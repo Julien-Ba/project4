@@ -1,0 +1,33 @@
+@use "sass:list";
+
+$tr-time-in: 200ms;
+$tr-time-out: 300ms;
+
+$default-timing-func: ease-in;
+
+@function listTransitions($references, $time, $effect) {
+    $new-list: (
+    );
+
+@each $reference in $references {
+    $new-list: list.append($new-list, $reference $time $effect, $separator: comma);
+}
+
+@return $new-list;
+}
+
+@mixin transition-in($references...) {
+    transition: listTransitions($references, $tr-time-in, $default-timing-func);
+}
+
+@mixin transition-out($references...) {
+    transition: listTransitions($references, $tr-time-out, $default-timing-func);
+}
+
+@mixin transition-timing-in($tr-timing-func, $references...) {
+    transition: listTransitions($references, $tr-time-in, $tr-timing-func);
+}
+
+@mixin transition-timing-out($tr-timing-func, $references...) {
+    transition: listTransitions($references, $tr-time-out, $tr-timing-func);
+}

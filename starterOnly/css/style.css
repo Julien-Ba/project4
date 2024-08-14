@@ -1,0 +1,92 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+/*
+
+    The website was integrated on desktop first
+
+    the map must be kept in order of screen sizes
+    the key: "desktop" is just here as a placeholder
+    it represents the base model from which everything respond to
+
+    the mixin "respond-to" check if the value the media query is using is above or below "dekstop" in the list
+    if it's below it then associate a max-width, if it's above, a min-width
+
+    if the media query should respond to a single screen size, 
+    the mixin "respond-only-to" associate a min-width and look for the next value in the list to set a max-width
+    if it was the first or last value of the map or if the next value is the default one, return to the previous mixin
+
+*/
+* {
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+.header {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.header-logo {
+  width: auto;
+  height: auto;
+}
+
+.nav-bar {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-btn-wrapper {
+  height: 2.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.625rem;
+  transition: background-color 300ms ease, color 300ms ease;
+}
+.nav-btn-wrapper:hover {
+  background-color: rgb(254, 20, 47);
+  transition: background-color 200ms ease;
+}
+.nav-btn-wrapper:hover :where(.nav-link, .fa) {
+  color: #ffffff;
+  transition: color 200ms ease;
+}
+
+.nav-link,
+.nav-extender {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  align-content: center;
+  text-align: center;
+  text-wrap: nowrap;
+}
+
+.nav-extender {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+@media (max-width: 768px) {
+  .nav-btn-wrapper:has(.nav-link) {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

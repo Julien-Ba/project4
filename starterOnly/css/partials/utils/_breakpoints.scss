@@ -1,0 +1,80 @@
+@use "sass:map";
+
+/*
+
+    The website was integrated on desktop first
+
+    the map must be kept in order of screen sizes
+    the key: "desktop" is just here as a placeholder
+    it represents the base model from which everything respond to
+
+    the mixin "respond-to" check if the value the media query is using is above or below "dekstop" in the list
+    if it's below it then associate a max-width, if it's above, a min-width
+
+    if the media query should respond to a single screen size, 
+    the mixin "respond-only-to" associate a min-width and look for the next value in the list to set a max-width
+    if it was the first or last value of the map or if the next value is the default one, return to the previous mixin
+
+*/
+
+$breakpoints: (
+    "min-screen": 320px,
+    "mobile": 768px,
+    "tablet": 1024px,
+    "desktop": 0,
+    "max-screen": 1440px
+);
+
+@function isBreakpoint($breakpoint) {
+    @if $breakpoint =="desktop" {
+        @warn "desktop should not be used as a breakpoint!";
+        @return false;
+    }
+
+    @if map-has-key($breakpoints, $breakpoint) {
+        @return true;
+    }
+
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+    +"Available breakpoints are: #{map-keys($breakpoints)}.";
+}
+
+@mixin respond-to($breakpoint) {
+    @if isBreakpoint($breakpoint) {
+        @if index(map-keys($breakpoints), $breakpoint) < index(map-keys($breakpoints), "desktop") {
+            @media (max-width: map-get($breakpoints, $breakpoint)) {
+                @content;
+            }
+        }
+
+        @else {
+            @media (min-width: map-get($breakpoints, $breakpoint)) {
+                @content;
+            }
+        }
+    }
+}
+
+@mixin respond-only-to($breakpoint) {
+    @if isBreakpoint($breakpoint) {
+
+        $index: index(map-keys($breakpoints), $breakpoint);
+        $value: map-get($breakpoints, $breakpoint);
+        $next-key: nth(map-keys($breakpoints), $index + 1);
+        $next-value: map-get($breakpoints, $next-key);
+
+        @if ($index ==1) or ($index ==length($breakpoints)) or ($next-key =="desktop") {
+            @include respond-to($breakpoint) {
+                @content
+            }
+
+            ;
+        }
+
+        @else {
+            @media (min-width: $value) and (max-width: $next-value) {
+                @content;
+            }
+        }
+    }
+}
