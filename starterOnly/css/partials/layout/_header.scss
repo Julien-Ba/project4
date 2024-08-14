@@ -4,12 +4,8 @@
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 2rem;
-}
-
-.header-logo {
-    width: auto;
-    height: auto;
 }
 
 .nav-bar {
@@ -32,6 +28,10 @@
             @include utils.transition-timing-in(ease, color);
         }
     }
+
+    &:has(.nav-extender) {
+        display: none;
+    }
 }
 
 .nav-link,
@@ -46,11 +46,25 @@
 
 .nav-extender {
     border: none;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: transparent;
+}
+
+@include utils.respond-to("tablet") {
+    .header {
+        flex-direction: column;
+    }
 }
 
 @include utils.respond-to("mobile") {
+    .header {
+        flex-direction: row;
+    }
+
     .nav-btn-wrapper:has(.nav-link) {
         display: none;
+    }
+
+    .nav-btn-wrapper:has(.nav-extender) {
+        display: block;
     }
 }

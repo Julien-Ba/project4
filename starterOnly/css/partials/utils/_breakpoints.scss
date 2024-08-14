@@ -22,11 +22,11 @@ $breakpoints: (
     "mobile": 768px,
     "tablet": 1024px,
     "desktop": 0,
-    "max-screen": 1440px
+    "max-screen": 1440px,
 );
 
 @function isBreakpoint($breakpoint) {
-    @if $breakpoint =="desktop" {
+    @if $breakpoint == "desktop" {
         @warn "desktop should not be used as a breakpoint!";
         @return false;
     }
@@ -36,18 +36,18 @@ $breakpoints: (
     }
 
     @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-    +"Available breakpoints are: #{map-keys($breakpoints)}.";
+    + "Available breakpoints are: #{map-keys($breakpoints)}.";
 }
 
 @mixin respond-to($breakpoint) {
     @if isBreakpoint($breakpoint) {
-        @if index(map-keys($breakpoints), $breakpoint) < index(map-keys($breakpoints), "desktop") {
+        @if index(map-keys($breakpoints), $breakpoint) <
+            index(map-keys($breakpoints), "desktop")
+        {
             @media (max-width: map-get($breakpoints, $breakpoint)) {
                 @content;
             }
-        }
-
-        @else {
+        } @else {
             @media (min-width: map-get($breakpoints, $breakpoint)) {
                 @content;
             }
@@ -57,21 +57,19 @@ $breakpoints: (
 
 @mixin respond-only-to($breakpoint) {
     @if isBreakpoint($breakpoint) {
-
         $index: index(map-keys($breakpoints), $breakpoint);
         $value: map-get($breakpoints, $breakpoint);
         $next-key: nth(map-keys($breakpoints), $index + 1);
         $next-value: map-get($breakpoints, $next-key);
 
-        @if ($index ==1) or ($index ==length($breakpoints)) or ($next-key =="desktop") {
+        @if ($index == 1) or
+            ($index == length($breakpoints)) or
+            ($next-key == "desktop")
+        {
             @include respond-to($breakpoint) {
-                @content
+                @content;
             }
-
-            ;
-        }
-
-        @else {
+        } @else {
             @media (min-width: $value) and (max-width: $next-value) {
                 @content;
             }
