@@ -229,6 +229,9 @@ function isTooBig(input) {
   return true;
 }
 
+
+// Custom validity
+
 function isInputValid(input, bool) {
   if (bool == true) {
     console.log(`${input.name} is valid`);
