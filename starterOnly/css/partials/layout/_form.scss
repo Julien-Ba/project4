@@ -1,0 +1,153 @@
+@use "../utils";
+
+.form-reserve-container {
+    width: 50%;
+    margin: auto;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    background-color: utils.$clr-bg-dark;
+    position: relative;
+
+    .close-form-reserve-container {
+        position: absolute;
+        right: 2rem;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    .input-txt {
+        width: 100%;
+        height: 4rem;
+        padding-inline: 1rem;
+        border: 1px solid utils.$clr-border;
+        border-radius: 0.75rem;
+
+        &:focus {
+            border: 2px solid utils.$clr-secondary;
+        }
+
+        &[data-error="true"] {
+            border: 2px solid utils.$clr-primary-lighter;
+        }
+    }
+
+    .btn-submit {
+        width: 12rem;
+        margin-inline: auto;
+        display: block;
+    }
+}
+
+.form-reserve-content {
+    margin-block-start: 2rem;
+
+    :where(form, .form-data:not(:has(.checkbox-input))) {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+.form-data {
+    margin-block-end: 0.5rem;
+}
+
+.form-data:has(input[type="radio"]) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+}
+
+.form-radio-wrapper,
+.form-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.checkbox-label {
+    text-wrap: nowrap;
+}
+
+.checkbox-input {
+    -webkit-appearance: none;
+    appearance: none;
+    color: utils.$clr-secondary;
+
+    &[type="radio"] {
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: utils.$clr-bg-dark;
+        border: 1px solid utils.$clr-border;
+        border-radius: 50%;
+        display: grid;
+        place-content: center;
+        @include utils.transition-timing-out(ease-in-out, border-color);
+
+        &:checked {
+            border-color: utils.$clr-secondary;
+            @include utils.transition-timing-in(ease-in-out, border-color);
+        }
+
+        &::before {
+            content: "";
+            width: 0.9rem;
+            height: 0.9rem;
+            border-radius: 50%;
+            transform: scale(0);
+            box-shadow: inset 1em 1em utils.$clr-secondary;
+            @include utils.transition-timing-out(ease-in-out, transform);
+        }
+
+        &:checked::before {
+            transform: scale(1);
+            @include utils.transition-timing-in(ease-in-out, transform);
+        }
+    }
+
+    &[type="checkbox"] {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-inline-end: 0.25rem;
+        background-color: utils.$clr-bg-light;
+        border-radius: 0.5rem;
+        display: grid;
+        place-content: center;
+        position: relative;
+
+        &::before {
+            content: "\f00c";
+            font-family: "fontawesome";
+            font-size: 0;
+            color: utils.$clr-txt-light;
+            text-align: center;
+            z-index: 2;
+            @include utils.transition-timing-out(ease-in-out, font-size);
+        }
+
+        &:checked::before {
+            font-size: 1rem;
+            @include utils.transition-timing-in(ease-in-out, font-size);
+            transition-delay: 100ms;
+        }
+
+        &::after {
+            content: "";
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 0.5rem;
+            opacity: 0;
+            box-shadow: inset 2rem 2rem utils.$clr-secondary;
+            position: absolute;
+            @include utils.transition-timing-out(ease-in-out, opacity);
+            transition-delay: 100ms;
+        }
+
+        &:checked::after {
+            opacity: 1;
+            @include utils.transition-timing-in(ease-in-out, opacity);
+        }
+    }
+}

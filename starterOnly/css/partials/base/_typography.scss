@@ -1,8 +1,42 @@
 @use "../utils";
 
-
-
 * {
     font-family: "DM Sans", Arial, Helvetica, sans-serif;
     line-height: 1.5;
+}
+
+.hero-title {
+    // https://utopia.fyi/type/calculator/?c=320,40,1.2,1440,96,1.25
+    font-size: clamp(2.5rem, 1.5rem + 5vw, 6rem);
+    font-weight: 500;
+    color: utils.$clr-txt-light;
+}
+
+.hero-description {
+    // https://utopia.fyi/type/calculator/?c=320,13,1.2,1440,24,1.25
+    font-size: clamp(0.8125rem, 0.6161rem + 0.9821vw, 1.5rem);
+    color: utils.$clr-txt-light;
+}
+
+.btn-modal {
+    color: utils.$clr-txt-light;
+}
+
+.btn-signup {
+    // https://utopia.fyi/type/calculator/?c=320,14,1.2,1440,25,1.25
+    font-size: clamp(0.875rem, 0.6786rem + 0.9821vw, 1.5625rem);
+    font-weight: 500;
+}
+
+.btn-close {
+    color: utils.$clr-txt-light;
+}
+
+.form-label {
+    font-size: 0.875rem;
+    color: utils.$clr-txt-light;
+}
+
+.input-txt {
+    font-size: 1.125rem;
 }
