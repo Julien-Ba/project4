@@ -57,14 +57,37 @@
 
 @include utils.respond-to("mobile") {
     .header {
+        position: relative;
         flex-direction: row;
+    }
+
+    .nav-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        position: absolute;
+        z-index: 3;
+        top: 1rem;
+        right: 2rem;
+        background-color: utils.$clr-bg-lighter;
+        border-radius: 1rem;
     }
 
     .nav-btn-wrapper:has(.nav-link) {
         display: none;
+        width: 100%;
     }
 
     .nav-btn-wrapper:has(.nav-extender) {
+        width: 3rem;
         display: block;
+    }
+
+    .nav-bar-mobile {
+        border: 1px solid utils.$clr-border-dark;
+
+        .nav-btn-wrapper:has(.nav-link) {
+            display: block;
+        }
     }
 }

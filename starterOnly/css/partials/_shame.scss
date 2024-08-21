@@ -1,0 +1,15 @@
+@use "utils";
+
+/*
+    between 1024px and 1066px the navbar overflow slightly
+*/
+
+@media (min-width: map-get(utils.$breakpoints, "tablet")) and (max-width: 1066px) {
+    .header {
+        gap: 1rem;
+    }
+
+    .nav-bar {
+        gap: 0.5rem;
+    }
+}

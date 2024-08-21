@@ -1,28 +1,56 @@
 @use "../utils";
 
+.nav-btn-wrapper:has(.nav-extender):hover {
+    .nav-extender {
+        font-size: 1rem;
+        transition: font-size 300ms ease-out;
+    }
+}
+
 .btn-modal {
+    width: 12rem;
     padding: 1rem 2rem;
+    text-wrap: nowrap;
     border: none;
     border-radius: 0.75rem;
     background-color: utils.$clr-primary-light;
-}
+    cursor: pointer;
+    @include utils.transition-timing-out(ease, background-color);
 
-.btn-signup {
     &:hover {
         background-color: utils.$clr-tertiary;
+        @include utils.transition-timing-in(ease, background-color);
     }
 }
 
-.close-form-reserve-container {
+.close-icon-container {
     border: none;
     background-color: transparent;
+    cursor: pointer;
 
     .close-icon {
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: utils.$clr-txt-light;
+        @include utils.transition-out(font-size);
+
+        &:hover {
+            font-size: 1.6rem;
+            @include utils.transition-in(font-size);
+        }
     }
 }
 
-.btn-submit {
+.btn-submit,
+.close-form-reserve-validated {
     margin-block: 0.5rem;
+}
+
+.btn-minus,
+.btn-plus {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid utils.$clr-border-dark;
+    border-radius: 0.5rem;
+    background-color: utils.$clr-bg-light;
+    cursor: pointer;
 }

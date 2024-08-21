@@ -1,20 +1,21 @@
 @use "../utils";
 
 .form-reserve-container {
-    width: 50%;
+    display: none;
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    width: clamp(32rem, 48rem, 33%);
+    height: 54rem;
     margin: auto;
     padding: 1rem 2rem;
     border-radius: 1rem;
     background-color: utils.$clr-bg-dark;
-    position: relative;
+    animation: slide-down 1000ms ease-in-out;
 
-    .close-form-reserve-container {
+    .close-icon-container {
         position: absolute;
         right: 2rem;
-    }
-
-    input:focus {
-        outline: none;
     }
 
     .input-txt {
@@ -33,7 +34,8 @@
         }
     }
 
-    .btn-submit {
+    .btn-submit,
+    .close-form-reserve-validated {
         width: 12rem;
         margin-inline: auto;
         display: block;
@@ -52,6 +54,43 @@
 
 .form-data {
     margin-block-end: 0.5rem;
+}
+
+.input-number-wrapper {
+    height: 4rem;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 2rem 2rem 1rem;
+    position: relative;
+}
+
+.input-txt[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    position: absolute;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+    }
+}
+
+.btn-minus,
+.btn-plus {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.btn-minus {
+    grid-column: 2;
+}
+
+.btn-plus {
+    grid-column: 3;
 }
 
 .form-data:has(input[type="radio"]) {
@@ -149,5 +188,39 @@
             opacity: 1;
             @include utils.transition-timing-in(ease-in-out, opacity);
         }
+    }
+}
+
+.form-validated-bg {
+    height: 48rem;
+    align-content: center;
+    text-align: center;
+}
+
+@include utils.respond-to("mobile") {
+    .form-reserve-container {
+        width: 100%;
+        min-height: 100%;
+        border-radius: 1rem 1rem 0 0;
+    }
+
+    .main:has(.mobile-form-bg) {
+        height: 55rem;
+
+        > .mobile-form-bg {
+            opacity: 0;
+            transition: opacity 1000ms ease-in;
+        }
+
+        .btn-signup {
+            transform: scale(0);
+            transition: transform 0 1000ms;
+        }
+    }
+
+    .mobile-form-bg:has(.copyrights) {
+        display: none;
+        // transform: scale(0);
+        // transition: transform 1000ms ease-in;
     }
 }
