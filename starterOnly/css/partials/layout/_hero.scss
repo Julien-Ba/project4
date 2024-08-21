@@ -1,0 +1,73 @@
+@use "../utils";
+
+.hero {
+    width: 100%;
+    height: clamp(44rem, 68rem, 80dvh); // need tweaking
+    border-radius: 1rem;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 1rem;
+    background-color: utils.$clr-bg-dark;
+
+    > :first-child:not(.hero-img) {
+        padding-block-start: 1rem;
+    }
+
+    > :last-child:not(.hero-img) {
+        padding-block-end: 1rem;
+    }
+
+    > :not(.hero-img) {
+        padding-inline: 2rem;
+    }
+
+    &-title {
+        grid-column: -1/1;
+        grid-row: 1;
+        z-index: 2;
+    }
+
+    &-description {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    &-btn-wrapper {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    &-img {
+        grid-column: 2;
+        grid-row: -1/4;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+@include utils.respond-to("tablet") {
+    .hero {
+        height: clamp(34rem, 68rem, 72dvh);
+    }
+}
+
+@include utils.respond-to("mobile") {
+    .hero {
+        height: initial;
+        display: flex;
+        flex-direction: column;
+        background-color: transparent;
+
+        &-img {
+            margin-block-start: 1rem;
+            img {
+                border-radius: 1rem;
+            }
+        }
+    }
+}

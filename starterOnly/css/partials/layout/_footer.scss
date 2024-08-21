@@ -1,0 +1,12 @@
+@use "../utils";
+
+.copyrights {
+    padding: 1rem 2rem;
+}
+
+@include utils.respond-to("mobile") {
+    footer {
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,571 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+/*
+
+    The website was integrated on desktop first
+
+    the map must be kept in order of screen sizes
+    the key: "desktop" is just here as a placeholder
+    it represents the base model from which everything respond to
+
+    the mixin "respond-to" check if the value the media query is using is above or below "dekstop" in the list
+    if it's below it then associate a max-width, if it's above, a min-width
+
+    if the media query should respond to a single screen size, 
+    the mixin "respond-only-to" associate a min-width and look for the next value in the list to set a max-width
+    if it was the first or last value of the map or if the next value is the default one, return to the previous mixin
+
+*/
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide-down {
+  from {
+    transform: translateY(-100dvh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+* {
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 1.5rem + 5vw, 6rem);
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.hero-description {
+  font-size: clamp(0.8125rem, 0.6161rem + 0.9821vw, 1.5rem);
+  color: #ffffff;
+}
+
+.btn-modal {
+  color: #ffffff;
+}
+
+.btn-signup {
+  font-size: clamp(0.875rem, 0.6786rem + 0.9821vw, 1.5625rem);
+  font-weight: 500;
+}
+
+.btn-close {
+  color: #ffffff;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  color: #ffffff;
+}
+
+.input-txt {
+  font-size: 1.125rem;
+}
+
+.form-validated-bg {
+  font-size: 2.25rem;
+  color: #ffffff;
+}
+
+.copyrights {
+  font-size: 0.9375rem;
+  color: rgb(254, 20, 47);
+}
+
+@media (max-width: 768px) {
+  .hero-title,
+  .hero-description {
+    color: #000000;
+  }
+}
+.nav-btn-wrapper:has(.nav-extender):hover .nav-extender {
+  font-size: 1rem;
+  transition: font-size 300ms ease-out;
+}
+
+.btn-modal {
+  width: 12rem;
+  padding: 1rem 2rem;
+  text-wrap: nowrap;
+  border: none;
+  border-radius: 0.75rem;
+  background-color: rgb(254, 20, 47);
+  cursor: pointer;
+  transition: background-color 300ms ease;
+}
+.btn-modal:hover {
+  background-color: #3876ac;
+  transition: background-color 200ms ease;
+}
+
+.close-icon-container {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.close-icon-container .close-icon {
+  font-size: 1.5rem;
+  color: #ffffff;
+  transition: font-size 300ms ease-in;
+}
+.close-icon-container .close-icon:hover {
+  font-size: 1.6rem;
+  transition: font-size 200ms ease-in;
+}
+
+.btn-submit,
+.close-form-reserve-validated {
+  margin-block: 0.5rem;
+}
+
+.btn-minus,
+.btn-plus {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid #9d9d9d;
+  border-radius: 0.5rem;
+  background-color: #c4c4c4;
+  cursor: pointer;
+}
+
+.header {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-bar {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-btn-wrapper {
+  height: 2.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.625rem;
+  transition: background-color 300ms ease, color 300ms ease;
+}
+.nav-btn-wrapper:hover {
+  background-color: rgb(254, 20, 47);
+  transition: background-color 200ms ease;
+}
+.nav-btn-wrapper:hover :where(.nav-link, .fa) {
+  color: #ffffff;
+  transition: color 200ms ease;
+}
+.nav-btn-wrapper:has(.nav-extender) {
+  display: none;
+}
+
+.nav-link,
+.nav-extender {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  align-content: center;
+  text-align: center;
+  text-wrap: nowrap;
+}
+
+.nav-extender {
+  border: none;
+  background-color: transparent;
+}
+
+@media (max-width: 1024px) {
+  .header {
+    flex-direction: column;
+  }
+}
+@media (max-width: 768px) {
+  .header {
+    position: relative;
+    flex-direction: row;
+  }
+  .nav-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    z-index: 3;
+    top: 1rem;
+    right: 2rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 1rem;
+  }
+  .nav-btn-wrapper:has(.nav-link) {
+    display: none;
+    width: 100%;
+  }
+  .nav-btn-wrapper:has(.nav-extender) {
+    width: 3rem;
+    display: block;
+  }
+  .nav-bar-mobile {
+    border: 1px solid #9d9d9d;
+  }
+  .nav-bar-mobile .nav-btn-wrapper:has(.nav-link) {
+    display: block;
+  }
+}
+body {
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(26, 39, 156, 0.4);
+  display: none;
+  animation: fade-in 500ms;
+}
+
+.blur {
+  filter: blur(0.1rem);
+}
+
+.main {
+  padding: 1rem 2rem;
+  position: relative;
+}
+.main > .btn-signup {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .background {
+    background-color: transparent;
+  }
+  .blur {
+    filter: blur(0);
+  }
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .main > .btn-signup {
+    display: block;
+  }
+  .hero .btn-signup {
+    display: none;
+  }
+}
+.hero {
+  width: 100%;
+  height: clamp(44rem, 68rem, 80dvh);
+  border-radius: 1rem;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 1rem;
+  background-color: #232323;
+}
+.hero > :first-child:not(.hero-img) {
+  padding-block-start: 1rem;
+}
+.hero > :last-child:not(.hero-img) {
+  padding-block-end: 1rem;
+}
+.hero > :not(.hero-img) {
+  padding-inline: 2rem;
+}
+.hero-title {
+  grid-column: -1/1;
+  grid-row: 1;
+  z-index: 2;
+}
+.hero-description {
+  grid-column: 1;
+  grid-row: 2;
+}
+.hero-btn-wrapper {
+  grid-column: 1;
+  grid-row: 3;
+}
+.hero-img {
+  grid-column: 2;
+  grid-row: -1/4;
+}
+.hero-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    height: clamp(34rem, 68rem, 72dvh);
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    height: initial;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+  }
+  .hero-img {
+    margin-block-start: 1rem;
+  }
+  .hero-img img {
+    border-radius: 1rem;
+  }
+}
+.form-reserve-container {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  width: clamp(32rem, 48rem, 33%);
+  height: 54rem;
+  margin: auto;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background-color: #232323;
+  animation: slide-down 1000ms ease-in-out;
+}
+.form-reserve-container .close-icon-container {
+  position: absolute;
+  right: 2rem;
+}
+.form-reserve-container .input-txt {
+  width: 100%;
+  height: 4rem;
+  padding-inline: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.75rem;
+}
+.form-reserve-container .input-txt:focus {
+  border: 2px solid rgba(39, 158, 122, 0.9);
+}
+.form-reserve-container .input-txt[data-error=true] {
+  border: 2px solid rgb(229, 72, 88);
+}
+.form-reserve-container .btn-submit,
+.form-reserve-container .close-form-reserve-validated {
+  width: 12rem;
+  margin-inline: auto;
+  display: block;
+}
+
+.form-reserve-content {
+  margin-block-start: 2rem;
+}
+.form-reserve-content :where(form, .form-data:not(:has(.checkbox-input))) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-data {
+  margin-block-end: 0.5rem;
+}
+
+.input-number-wrapper {
+  height: 4rem;
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 2rem 2rem 1rem;
+  position: relative;
+}
+
+.input-txt[type=number] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  position: absolute;
+}
+.input-txt[type=number]::-webkit-inner-spin-button, .input-txt[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.btn-minus,
+.btn-plus {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.btn-minus {
+  grid-column: 2;
+}
+
+.btn-plus {
+  grid-column: 3;
+}
+
+.form-data:has(input[type=radio]) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.form-radio-wrapper,
+.form-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-label {
+  text-wrap: nowrap;
+}
+
+.checkbox-input {
+  -webkit-appearance: none;
+  appearance: none;
+  color: rgba(39, 158, 122, 0.9);
+}
+.checkbox-input[type=radio] {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #232323;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  transition: border-color 300ms ease-in-out;
+}
+.checkbox-input[type=radio]:checked {
+  border-color: rgba(39, 158, 122, 0.9);
+  transition: border-color 200ms ease-in-out;
+}
+.checkbox-input[type=radio]::before {
+  content: "";
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  transform: scale(0);
+  box-shadow: inset 1em 1em rgba(39, 158, 122, 0.9);
+  transition: transform 300ms ease-in-out;
+}
+.checkbox-input[type=radio]:checked::before {
+  transform: scale(1);
+  transition: transform 200ms ease-in-out;
+}
+.checkbox-input[type=checkbox] {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-inline-end: 0.25rem;
+  background-color: #c4c4c4;
+  border-radius: 0.5rem;
+  display: grid;
+  place-content: center;
+  position: relative;
+}
+.checkbox-input[type=checkbox]::before {
+  content: "\f00c";
+  font-family: "fontawesome";
+  font-size: 0;
+  color: #ffffff;
+  text-align: center;
+  z-index: 2;
+  transition: font-size 300ms ease-in-out;
+}
+.checkbox-input[type=checkbox]:checked::before {
+  font-size: 1rem;
+  transition: font-size 200ms ease-in-out;
+  transition-delay: 100ms;
+}
+.checkbox-input[type=checkbox]::after {
+  content: "";
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.5rem;
+  opacity: 0;
+  box-shadow: inset 2rem 2rem rgba(39, 158, 122, 0.9);
+  position: absolute;
+  transition: opacity 300ms ease-in-out;
+  transition-delay: 100ms;
+}
+.checkbox-input[type=checkbox]:checked::after {
+  opacity: 1;
+  transition: opacity 200ms ease-in-out;
+}
+
+.form-validated-bg {
+  height: 48rem;
+  align-content: center;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .form-reserve-container {
+    width: 100%;
+    min-height: 100%;
+    border-radius: 1rem 1rem 0 0;
+  }
+  .main:has(.mobile-form-bg) {
+    height: 55rem;
+  }
+  .main:has(.mobile-form-bg) > .mobile-form-bg {
+    opacity: 0;
+    transition: opacity 1000ms ease-in;
+  }
+  .main:has(.mobile-form-bg) .btn-signup {
+    transform: scale(0);
+    transition: transform 0 1000ms;
+  }
+  .mobile-form-bg:has(.copyrights) {
+    display: none;
+  }
+}
+.copyrights {
+  padding: 1rem 2rem;
+}
+
+@media (max-width: 768px) {
+  footer {
+    display: flex;
+    justify-content: center;
+  }
+}
+/*
+    between 1024px and 1066px the navbar overflow slightly
+*/
+@media (min-width: 1024px) and (max-width: 1066px) {
+  .header {
+    gap: 1rem;
+  }
+  .nav-bar {
+    gap: 0.5rem;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
