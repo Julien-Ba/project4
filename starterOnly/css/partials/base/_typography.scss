@@ -6,8 +6,8 @@
 }
 
 .hero-title {
-    // https://utopia.fyi/type/calculator/?c=320,40,1.2,1440,96,1.25
-    font-size: clamp(2.5rem, 1.5rem + 5vw, 6rem);
+    // https://utopia.fyi/type/calculator/?c=320,30,1.2,1440,96,1.25
+    font-size: clamp(1.875rem, 0.6964rem + 5.8929vw, 6rem);
     font-weight: 500;
     color: utils.$clr-txt-light;
 }
