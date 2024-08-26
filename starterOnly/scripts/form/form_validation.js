@@ -19,7 +19,7 @@ export { validateForm, areInputsValid };
         - default html behaviour to tell the form the input is valid
 
     resetCustomCheckboxValidity:
-        - if present, remove the custom error div for checkbox/radio inputs
+        - if present, remove the custom error div and dataset for checkbox/radio inputs
 
     areInputsValid:
         - the const synthax need to be respected in the input_validation.inputValidation object
@@ -65,4 +65,6 @@ function areInputsValid(input) {
 function resetCustomCheckboxValidity() {
     const div = document.querySelector(".checkboxValidity");
     if (div != null) div.remove();
+    const radios = document.querySelectorAll("input[type = 'radio']");
+    radios.forEach((radio) => radio.dataset.error = false);
 }
