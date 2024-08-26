@@ -1,37 +1,36 @@
 import { editNavBar } from "./layout/navbar.js";
 import { openForm, closeForm } from "./layout/form.js";
 import { clickBtnMinus, clickBtnPlus } from "./form/input_number.js";
-import { validateForm } from "./form/form_validation.js";
+import { areInputsValid, validateForm } from "./form/form_validation.js";
 
 
 
 // Mobile nav-bar
-
-const navExtenderBtn = document.querySelector(".nav-extender");
-navExtenderBtn.onclick = function () { editNavBar() };
+document.querySelector(".nav-extender").addEventListener("click", editNavBar);
 
 
 
 // Open-close reserve form
-
-const openFormBtn = document.querySelectorAll(".btn-signup");
-openFormBtn.forEach((btn) => btn.onclick = function () { openForm() });
-
-const closeFormBtn = document.querySelectorAll(".close-form-reserve");
-closeFormBtn.forEach((btn) => btn.onclick = function () { closeForm() });
+document.querySelectorAll(".btn-signup").forEach((btn) => btn.addEventListener("click", openForm));
+document.querySelectorAll(".close-form-reserve").forEach((btn) => btn.addEventListener("click", closeForm));
 
 
 
 // Number inputs buttons
-
-const btnMinus = document.querySelector(".btn-minus");
-btnMinus.onclick = function () { clickBtnMinus() };
-
-const btnPlus = document.querySelector(".btn-plus");
-btnPlus.onclick = function () { clickBtnPlus() };
+document.querySelector(".btn-minus").addEventListener("click", (event) => {
+    clickBtnMinus(event);
+    event.target.parentNode.firstElementChild.setCustomValidity("");
+});
+document.querySelector(".btn-plus").addEventListener("click", (event) => {
+    clickBtnPlus(event);
+    event.target.parentNode.firstElementChild.setCustomValidity("");
+});
 
 
 
 // Submit reserve form
+document.forms["reserve"].addEventListener("submit", ((event) => { validateForm(event) }));
 
-document.forms["reserve"].addEventListener("submit", (event) => validateForm(event));
+for (let i = 0; i < document.forms["reserve"].elements.length; i++) {
+    document.forms["reserve"].elements[i].addEventListener("change", (event) => { areInputsValid(event.target) });
+}

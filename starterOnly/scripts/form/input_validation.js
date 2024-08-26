@@ -1,4 +1,5 @@
 import {
+    isNameRequired,
     isEmailRequired,
     isAgeRequired,
     isQuantityRequired,
@@ -8,7 +9,7 @@ import {
 
 import {
     isInputEmpty,
-    isNameValid,
+    inputHas2char,
     isEmailFormat,
     isDateFormat,
     isDateInFuture,
@@ -79,6 +80,14 @@ const inputValidation = {
 
 };
 
+function isNameValid(input) {
+    if (!isNameRequired) return true;
+    if (isInputEmpty(input)
+        || !inputHas2char(input)
+    ) return isInputValid(input, false);
+    return isInputValid(input, true);
+}
+
 function hasLocation(input) {
     const inputs = document.forms["reserve"].elements[input.name];
     if (!isLocationRequired) return true;
@@ -87,7 +96,7 @@ function hasLocation(input) {
         return isInputValid(inputs[0], true);
     }
     console.log("no locations were selected");
-    setCustomCheckboxValidity(inputs[0], "Veuillez cocher une ville.");
+    setCustomCheckboxValidity(inputs[0].parentNode.parentNode.lastChild, "Veuillez cocher une ville.");
     return isInputValid(inputs[0], false);
 }
 
@@ -98,7 +107,7 @@ function hasCheckedTerms(input) {
         return isInputValid(input, true);
     }
     console.log("has NOT checked terms of services");
-    setCustomCheckboxValidity(input, "Veuillez cocher les conditions d'utilisation.");
+    setCustomCheckboxValidity(input, "Veuillez accepter les conditions d'utilisation.");
     return isInputValid(input, false);
 }
 
@@ -106,8 +115,10 @@ function isInputValid(input, bool) {
     if (bool === true) {
         console.log(`${input.name} is valid`);
         input.setCustomValidity("");
+        input.dataset.error = false;
         return true;
     }
     console.log(`${input.name} is NOT valid`);
+    input.dataset.error = true;
     return false;
 }

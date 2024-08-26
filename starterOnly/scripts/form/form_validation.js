@@ -1,7 +1,7 @@
 import { inputValidation } from "./input_validation.js";
 import { validatedForm } from "../layout/form.js";
 import { capitalize } from "../utils/str.js";
-export { validateForm };
+export { validateForm, areInputsValid };
 
 
 
@@ -31,20 +31,17 @@ export { validateForm };
 
 
 
-const form = document.forms["reserve"];
-
 function validateForm(event) {
     event.preventDefault();
-    if (isFormValid(form)) {
-        console.log(`${form.name} form is valid`);
+    if (isFormValid(event.target)) {
+        console.log(`${event.target.name} form is valid`);
         return validatedForm();
     } else {
-        console.log(`${form.name} form is NOT valid`);
+        console.log(`${event.target.name} form is NOT valid`);
     }
 }
 
 function isFormValid(form) {
-    resetCustomCheckboxValidity();
     for (let i = 0; i < form.elements.length; i++) {
         if (!areInputsValid(form.elements[i])) {
             form.reportValidity();
@@ -55,6 +52,7 @@ function isFormValid(form) {
 }
 
 function areInputsValid(input) {
+    resetCustomCheckboxValidity();
     const functionName = `is${capitalize(input.name)}Valid`;
     if (typeof inputValidation[functionName] !== "function"
         || (/location[2-9]/).test(input.id))

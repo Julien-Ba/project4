@@ -1,15 +1,12 @@
 import {
-    isNameRequired,
     minAge,
     minTourney,
     maxTourney
 } from "./variables.js";
 
-import { isInputValid } from "./input_validation.js";
-
 export {
     isInputEmpty,
-    isNameValid,
+    inputHas2char,
     isEmailFormat,
     isDateFormat,
     isDateInFuture,
@@ -23,18 +20,10 @@ export {
 
 
 function isInputEmpty(input) {
-    if (!input.value === "") return false;
+    if (input.value !== "") return false;
     console.log(`${input.name} input is not filled`);
     input.setCustomValidity("Merci de remplir ce champ");
     return true;
-}
-
-function isNameValid(input) {
-    if (!isNameRequired) return true;
-    if (isInputEmpty(input)
-        || !inputHas2char(input)
-    ) return isInputValid(input, false);
-    return isInputValid(input, true);
 }
 
 function inputHas2char(input) {

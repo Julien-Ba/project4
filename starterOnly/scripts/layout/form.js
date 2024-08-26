@@ -71,5 +71,5 @@ function setCustomCheckboxValidity(input, str) {
     const div = document.createElement("div");
     div.classList.add("checkboxValidity");
     div.textContent = str;
-    input.parentNode.append(div);
+    input.parentNode.insertAdjacentElement("afterend", div);
 }

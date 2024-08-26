@@ -8,7 +8,8 @@ export {
     isTosRequired,
     minAge,
     minTourney,
-    maxTourney
+    maxTourney,
+    inputRequired
 };
 
 
@@ -22,3 +23,5 @@ const isTosRequired = true;
 const minAge = 13;
 const minTourney = 0;
 const maxTourney = 99;
+
+const inputRequired = ["first", "last", "brithdate", "quantity", "checkbox1"];
