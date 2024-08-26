@@ -189,6 +189,12 @@
             opacity: 1;
             @include utils.transition-timing-in(ease-in-out, opacity);
         }
+
+        &[data-error="true"] {
+            border: 2px solid utils.$clr-primary-lighter;
+            @include utils.transition-timing-out(ease-in-out, border);
+            transition-delay: 100ms;
+        }
     }
 }
 

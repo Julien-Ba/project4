@@ -525,6 +525,11 @@ body {
   opacity: 1;
   transition: opacity 200ms ease-in-out;
 }
+.checkbox-input[type=checkbox][data-error=true] {
+  border: 2px solid rgb(229, 72, 88);
+  transition: border 300ms ease-in-out;
+  transition-delay: 100ms;
+}
 
 .form-validated-bg {
   height: 48rem;
