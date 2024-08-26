@@ -13,10 +13,10 @@ export {
 };
 
 
-const isNameRequired = true;
-const isEmailRequired = true;
-const isAgeRequired = true;
-const isQuantityRequired = true;
+const isNameRequired = false;
+const isEmailRequired = false;
+const isAgeRequired = false;
+const isQuantityRequired = false;
 const isLocationRequired = true;
 const isTosRequired = true;
 

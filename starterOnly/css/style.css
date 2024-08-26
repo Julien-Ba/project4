@@ -454,6 +454,11 @@ body {
   text-wrap: nowrap;
 }
 
+.form-data:has(.checkbox-input[type=radio][data-error=true]) :is(input) {
+  border: 2px solid rgb(229, 72, 88);
+  transition: border 200ms ease-in;
+}
+
 .checkbox-input {
   -webkit-appearance: none;
   appearance: none;

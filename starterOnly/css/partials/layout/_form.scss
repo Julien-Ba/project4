@@ -111,6 +111,11 @@
     text-wrap: nowrap;
 }
 
+.form-data:has(.checkbox-input[type="radio"][data-error="true"]) :is(input) {
+    border: 2px solid utils.$clr-primary-lighter;
+    @include utils.transition-in(border);
+}
+
 .checkbox-input {
     -webkit-appearance: none;
     appearance: none;
