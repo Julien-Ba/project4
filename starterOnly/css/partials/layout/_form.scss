@@ -6,7 +6,7 @@
     inset: 0;
     z-index: 10;
     width: clamp(32rem, 48rem, 33%);
-    height: 54rem;
+    height: fit-content;
     margin: auto;
     padding: 1rem 2rem;
     border-radius: 1rem;
@@ -45,14 +45,15 @@
 .form-reserve-content {
     margin-block-start: 2rem;
 
-    :where(form, .form-data:not(:has(.checkbox-input))) {
+    :where(form, .form-data:not(:has(.form-radio-wrapper))) {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
     }
 }
 
-.form-data {
+.form-data,
+.checkboxValidity {
     margin-block-end: 0.5rem;
 }
 
@@ -148,8 +149,8 @@
 
     &[type="checkbox"] {
         width: 1.5rem;
+        min-width: 1.5rem; // otherwise it's somehow goes below in very small screens for some reasons ???
         height: 1.5rem;
-        margin-inline-end: 0.25rem;
         background-color: utils.$clr-bg-light;
         border-radius: 0.5rem;
         display: grid;
@@ -197,10 +198,32 @@
     text-align: center;
 }
 
+.checkboxValidity {
+    padding: 0.5rem 1rem;
+    border: 0.125rem rgba(39, 158, 122, 0.9) solid;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 1rem;
+}
+
+.checkboxValidity::before {
+    content: "\f071";
+    font-family: "fontawesome";
+    font-size: 1.125rem;
+    padding-inline-end: 1rem;
+    color: rgba(172, 16, 16, 0.9);
+}
+
+.formData > :last-child:where(.checkboxValidity) {
+    margin-block-end: 0.5rem;
+}
+
 @include utils.respond-to("mobile") {
     .form-reserve-container {
         width: 100%;
         min-height: 100%;
+        margin: 0;
         border-radius: 1rem 1rem 0 0;
     }
 
