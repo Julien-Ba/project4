@@ -1,12 +1,5 @@
 @use "../utils";
 
-.nav-btn-wrapper:has(.nav-extender):hover {
-    .nav-extender {
-        font-size: 1rem;
-        transition: font-size 300ms ease-out;
-    }
-}
-
 .btn-modal {
     width: 12rem;
     padding: 1rem 2rem;
