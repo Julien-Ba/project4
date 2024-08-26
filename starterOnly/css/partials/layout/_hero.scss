@@ -63,11 +63,12 @@
         flex-direction: column;
         background-color: transparent;
 
-        &-img {
-            margin-block-start: 1rem;
-            img {
-                border-radius: 1rem;
-            }
+        > :not(.hero-img) {
+            padding: 0;
+        }
+
+        &-img img {
+            border-radius: 1rem;
         }
     }
 }
