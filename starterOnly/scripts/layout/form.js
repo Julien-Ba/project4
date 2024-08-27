@@ -7,6 +7,8 @@ export {
 
 
 
+// open and close the form
+
 let formDataElements = ["background", "header", "footer"];
 const mainElements = document.querySelector(".main").children;
 for (let i = 0; i < mainElements.length; i++) {
@@ -25,6 +27,10 @@ function closeForm() {
         document.querySelector(`#${element}`).dataset.form_opened = "false"
     );
 }
+
+
+
+// manage the form layouts
 
 const formElements = ["form-reserve-content", "form-validated-bg", "close-form-reserve-validated"];
 
