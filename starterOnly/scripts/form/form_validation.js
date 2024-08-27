@@ -35,7 +35,7 @@ function validateForm(event) {
     event.preventDefault();
     if (isFormValid(event.target)) {
         console.log(`${event.target.name} form is valid`);
-        return validatedForm();
+        return validatedForm(event.target);
     } else {
         console.log(`${event.target.name} form is NOT valid`);
     }

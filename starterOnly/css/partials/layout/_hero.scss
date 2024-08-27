@@ -10,6 +10,10 @@
     gap: 1rem;
     background-color: utils.$clr-bg-dark;
 
+    &[data-form_opened="true"] {
+        filter: blur(0.1rem);
+    }
+
     > :first-child:not(.hero-img) {
         padding-block-start: 1rem;
     }

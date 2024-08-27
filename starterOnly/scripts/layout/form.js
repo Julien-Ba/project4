@@ -7,64 +7,36 @@ export {
 
 
 
-const toggleElements = [".background", ".form-reserve-container", ".btn-submit", ".form-reserve-content"];
-const toggleInverseElements = [".form-validated-bg", ".close-form-reserve-validated"];
-let bgElements = ["header", "footer"];
-
-for (let i = 0; i < document.querySelector("main").children.length; i++) {
-    let child = document.querySelector("main").children[i];
-    if (!child.classList.contains("form-reserve-container")) {
-        bgElements.push("." + child.classList[0]);
-    }
-}
-
-let bgElementsMobile = [];
-for (let i = 1; i < bgElements.length; i++) {
-    bgElementsMobile.push(bgElements[i]);
+let formDataElements = ["background", "header", "footer"];
+const mainElements = document.querySelector(".main").children;
+for (let i = 0; i < mainElements.length; i++) {
+    formDataElements.push(mainElements[i].id);
 }
 
 function openForm() {
-    toggleElements.forEach((element) =>
-        document.querySelector(element).style.display = "block"
-    );
-    toggleInverseElements.forEach((element) =>
-        document.querySelector(element).style.display = "none"
-    );
-    bgElements.forEach((elements) =>
-        (document.querySelectorAll(elements)).forEach(
-            (element) => element.classList.add("blur")
-        )
-    );
-    bgElementsMobile.forEach((elements) =>
-        (document.querySelectorAll(elements)).forEach(
-            (element) => element.classList.add("mobile-form-bg")
-        )
-    );
-};
+    resetForm();
+    formDataElements.forEach((element) => {
+        document.querySelector(`#${element}`).dataset.form_opened = "true"
+    });
+}
 
 function closeForm() {
-    toggleElements.forEach((element) =>
-        document.querySelector(element).style.display = "none"
-    );
-    bgElements.forEach((elements) =>
-        (document.querySelectorAll(elements)).forEach(
-            (element) => element.classList.remove("blur")
-        )
-    );
-    bgElementsMobile.forEach((elements) =>
-        (document.querySelectorAll(elements)).forEach(
-            (element) => element.classList.remove("mobile-form-bg")
-        )
+    formDataElements.forEach((element) =>
+        document.querySelector(`#${element}`).dataset.form_opened = "false"
     );
 }
 
-function validatedForm() {
-    document.querySelector(".btn-submit").style.display = "none";
-    document.querySelector(".form-reserve-content").style.display = "none";
-    toggleInverseElements.forEach((element) =>
-        document.querySelector(element).style.display = "block"
+function resetForm() {
+    ["form-reserve-content", "form-validated-bg", "close-form-reserve-validated"].forEach((element) =>
+        document.querySelector(`.${element}`).dataset.form_validated = "false"
     );
-    document.forms["reserve"].reset();
+}
+
+function validatedForm(form) {
+    ["form-reserve-content", "form-validated-bg", "close-form-reserve-validated"].forEach((element) =>
+        document.querySelector(`.${element}`).dataset.form_validated = "true"
+    );
+    form.reset();
 };
 
 function setCustomCheckboxValidity(input, str) {

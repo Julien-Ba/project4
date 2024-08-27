@@ -1,12 +1,20 @@
 @use "../utils";
 
+.footer[data-form_opened="true"] {
+    filter: blur(0.1rem);
+}
+
 .copyrights {
     padding: 1rem 2rem;
 }
 
 @include utils.respond-to("mobile") {
-    footer {
+    .footer {
         display: flex;
         justify-content: center;
+
+        &[data-form_opened="true"] {
+            display: none;
+        }
     }
 }

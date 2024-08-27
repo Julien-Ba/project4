@@ -13,6 +13,10 @@
     background-color: utils.$clr-bg-dark;
     animation: slide-down 1000ms ease-in-out;
 
+    &[data-form_opened="true"] {
+        display: block;
+    }
+
     .close-icon-container {
         position: absolute;
         right: 2rem;
@@ -38,6 +42,17 @@
     .close-form-reserve-validated {
         width: 12rem;
         margin-inline: auto;
+    }
+
+    .close-form-reserve-validated {
+        display: none;
+    }
+
+    .btn-submit[data-form_validated="true"] {
+        display: none;
+    }
+
+    .close-form-reserve-validated[data-form_validated="true"] {
         display: block;
     }
 }
@@ -49,6 +64,14 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+    }
+
+    &[data-form_opened="true"] {
+        display: block;
+    }
+
+    &[data-form_validated="true"] {
+        display: none;
     }
 }
 
@@ -204,9 +227,14 @@
 }
 
 .form-validated-bg {
+    display: none;
     height: 48rem;
     align-content: center;
     text-align: center;
+
+    &[data-form_validated="true"] {
+        display: block;
+    }
 }
 
 .checkboxValidity {
@@ -238,23 +266,13 @@
         border-radius: 1rem 1rem 0 0;
     }
 
-    .main:has(.mobile-form-bg) {
-        height: 55rem;
-
-        > .mobile-form-bg {
-            opacity: 0;
-            transition: opacity 1000ms ease-in;
-        }
-
-        .btn-signup {
-            transform: scale(0);
-            transition: transform 0 1000ms;
-        }
+    .main:nth-child(n)[data-form_opened="true"]:not(.form-reserve-container) {
+        opacity: 0;
+        transition: opacity 1000ms ease-in;
     }
 
-    .mobile-form-bg:has(.copyrights) {
-        display: none;
-        // transform: scale(0);
-        // transition: transform 1000ms ease-in;
+    .footer[data-form_opened="true"] {
+        transform: scale(0);
+        transition: transform 1000ms ease-in;
     }
 }

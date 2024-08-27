@@ -10,6 +10,10 @@
     &-logo {
         max-width: 60vw;
     }
+
+    &[data-form_opened="true"] {
+        filter: blur(0.1rem);
+    }
 }
 
 .nav-bar {
@@ -74,6 +78,10 @@
     .header {
         position: relative;
         flex-direction: row;
+
+        &[data-form_opened="true"] {
+            filter: blur(0);
+        }
     }
 
     .nav-bar {

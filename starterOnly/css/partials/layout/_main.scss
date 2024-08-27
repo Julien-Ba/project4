@@ -14,10 +14,10 @@ body {
     background-color: utils.$clr-bg;
     display: none;
     animation: fade-in 500ms;
-}
 
-.blur {
-    filter: blur(0.1rem);
+    &[data-form_opened="true"] {
+        display: block;
+    }
 }
 
 .main {
@@ -26,16 +26,16 @@ body {
 
     > .btn-signup {
         display: none;
+
+        &[data-form_opened="true"] {
+            filter: blur(0.1rem);
+        }
     }
 }
 
 @include utils.respond-to("mobile") {
     .background {
         background-color: transparent;
-    }
-
-    .blur {
-        filter: (blur(0));
     }
 
     .main {
