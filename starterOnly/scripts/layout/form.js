@@ -26,14 +26,16 @@ function closeForm() {
     );
 }
 
+const formElements = ["form-reserve-content", "form-validated-bg", "close-form-reserve-validated"];
+
 function resetForm() {
-    ["form-reserve-content", "form-validated-bg", "close-form-reserve-validated"].forEach((element) =>
+    formElements.forEach((element) =>
         document.querySelector(`.${element}`).dataset.form_validated = "false"
     );
 }
 
 function validatedForm(form) {
-    ["form-reserve-content", "form-validated-bg", "close-form-reserve-validated"].forEach((element) =>
+    formElements.forEach((element) =>
         document.querySelector(`.${element}`).dataset.form_validated = "true"
     );
     form.reset();
