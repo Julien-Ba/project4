@@ -20,7 +20,3 @@ function clickBtnPlus() {
     if (nb >= maxTourney) return inputNb.value = maxTourney.toString();
     inputNb.value = (nb + 1).toString();
 };
-
-inputNb.addEventListener("change", (event) => {
-    if (Number(event.value) < 0) event.value = "0";
-});
