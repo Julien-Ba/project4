@@ -1,23 +1,10 @@
-export {
-    isNameRequired,
-    isEmailRequired,
-    isAgeRequired,
-    isQuantityRequired,
-    isLocationRequired,
-    isTosRequired,
-    minAge,
-    minTourney,
-    maxTourney
-};
+export const isNameRequired = true;
+export const isEmailRequired = true;
+export const isAgeRequired = true;
+export const isQuantityRequired = true;
+export const isLocationRequired = true;
+export const isTosRequired = true;
 
-
-const isNameRequired = true;
-const isEmailRequired = true;
-const isAgeRequired = true;
-const isQuantityRequired = true;
-const isLocationRequired = true;
-const isTosRequired = true;
-
-const minAge = 13;
-const minTourney = 0;
-const maxTourney = 99;
+export const minAge = 13;
+export const minTourney = 0;
+export const maxTourney = 99;
