@@ -19,6 +19,10 @@ export {
 
 
 
+/*
+    each function check an input parameter requirement and return the error msg if there is one
+*/
+
 function isInputEmpty(input) {
     if (input.value !== "") return false;
     console.log(`${input.name} input is not filled`);

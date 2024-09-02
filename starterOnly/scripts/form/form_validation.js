@@ -15,9 +15,6 @@ export { validateForm, areInputsValid };
     validatedForm:
         - change the layout of the form content to tell the user it is validated
 
-    reportValidity:
-        - default html behaviour to tell the form the input is valid
-
     resetCustomCheckboxValidity:
         - if present, remove the custom error div and dataset for checkbox/radio inputs
 
@@ -42,13 +39,16 @@ function validateForm(event) {
 }
 
 function isFormValid(form) {
-    for (let i = 0; i < form.elements.length; i++) {
+    const len = form.elements.length;
+    let isValid = true;
+    for (let i = 0; i < len; i++) {
         if (!areInputsValid(form.elements[i])) {
             form.reportValidity();
-            return false;
+            isValid = false;
+            break;
         }
     }
-    return true;
+    return isValid;
 }
 
 function areInputsValid(input) {
