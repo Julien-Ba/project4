@@ -23,6 +23,8 @@ export {
     each function check an input parameter requirement and return the error msg if there is one
 */
 
+
+// check if the input value is empty
 function isInputEmpty(input) {
     if (input.value !== "") return false;
     console.log(`${input.name} input is not filled`);
@@ -30,6 +32,7 @@ function isInputEmpty(input) {
     return true;
 }
 
+// check if the input value is at least 2 character long
 function inputHas2char(input) {
     if (input.value.length > 1) return true;
     console.log(`${input.name} input has less than 2 char`);
@@ -37,6 +40,7 @@ function inputHas2char(input) {
     return false;
 }
 
+// check if the input value is a valid email format
 function isEmailFormat(input) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailRegex.test(input.value)) return true;
@@ -45,6 +49,7 @@ function isEmailFormat(input) {
     return false;
 }
 
+// check if the input value is a valid date format
 function isDateFormat(input) {
     const date = new Date(input.value);
     if (!isNaN(date.getTime())) return true;
@@ -53,8 +58,10 @@ function isDateFormat(input) {
     return false;
 }
 
+// set the current date to a variable
 const now = new Date();
 
+// check if the date entered in the input is in the future
 function isDateInFuture(input) {
     const date = new Date(input.value);
     if (date < now) return false;
@@ -63,6 +70,8 @@ function isDateInFuture(input) {
     return true;
 }
 
+// check if the date entered correspond to the age requirement
+// set in ./variables
 function isTooYoung(input) {
     const date = new Date(input.value);
     const age = now.getFullYear() - date.getFullYear();
@@ -72,6 +81,7 @@ function isTooYoung(input) {
     return true;
 }
 
+// check if the input value is a number
 function isInputNaN(input) {
     if (!isNaN(input.value)) return false;
     console.log(`${input.name} entered is not a number`);
@@ -79,6 +89,7 @@ function isInputNaN(input) {
     return true;
 }
 
+// check if the input value is an integer
 function isInputInt(input) {
     if (input.value % 1 === 0) return true;
     console.log(`${input.name} entered is not an integer`);
@@ -86,6 +97,7 @@ function isInputInt(input) {
     return false;
 }
 
+// check if the number is negative
 function isInputNegative(input) {
     if (!(input.value < 0)) return false;
     console.log(`${input.name} entered is a negative number`);
@@ -93,6 +105,8 @@ function isInputNegative(input) {
     return true;
 }
 
+// check if the number is in the threshold of the selected requirements
+// set in ./variables
 function isInputInThreshold(input) {
     if (input.value >= minTourney && input.value <= maxTourney)
         return false;

@@ -14,7 +14,7 @@ document.querySelector(".nav-extender").addEventListener("click", editNavBar);
 
 
 /*
-    Events that handle the opening and closing of the form container
+    Events that handle the click of the buttons responsable for the opening and closing of the form container
 */
 
 document.querySelectorAll(".btn-signup").forEach((btn) => btn.addEventListener("click", openForm));
