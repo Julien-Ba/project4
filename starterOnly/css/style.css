@@ -572,26 +572,35 @@ body {
 }
 
 .checkboxValidity {
-  padding: 0.5rem 1rem;
-  border: 0.125rem rgba(39, 158, 122, 0.9) solid;
-  border-radius: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.9);
-  color: rgba(0, 0, 0, 0.9);
-  font-size: 1rem;
+  font-size: 0.625rem;
+  color: rgb(229, 72, 88);
+}
+
+/*
+
+// custom design for the error msg's div
+
+.checkboxValidity {
+    padding: 0.5rem 1rem;
+    border: 0.125rem rgba(39, 158, 122, 0.9) solid;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 1rem;
 }
 
 .checkboxValidity::before {
-  content: "\f071";
-  font-family: "fontawesome";
-  font-size: 1.125rem;
-  padding-inline-end: 1rem;
-  color: rgba(172, 16, 16, 0.9);
+    content: "\f071";
+    font-family: "fontawesome";
+    font-size: 1.125rem;
+    padding-inline-end: 1rem;
+    color: rgba(172, 16, 16, 0.9);
 }
 
 .formData > :last-child:where(.checkboxValidity) {
-  margin-block-end: 0.5rem;
+    margin-block-end: 0.5rem;
 }
-
+*/
 @media (max-width: 768px) {
   .form-reserve-container {
     width: 100%;
